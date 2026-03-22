@@ -1,0 +1,44 @@
+name: Deploy via SFTP + IndexNow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
+      # Configure these secrets in your GitHub repo Settings → Secrets:
+      # SFTP_HOST: your hosting SFTP hostname
+      # SFTP_USER: your SFTP username
+      # SFTP_PASSWORD: your SFTP password
+      # INDEXNOW_KEY: your IndexNow key (from console.bing.com/webmaster)
+      # SITE_URL: your full site URL (e.g. https://yourdomain.com)
+      - name: Deploy via SFTP (lftp)
+        env:
+          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+        run: |
+          lftp -c "
+            set sftp:auto-confirm yes;
+            set net:timeout 30;
+            set net:max-retries 3;
+            open sftp://${{ secrets.SFTP_USER }}:$SFTP_PASSWORD@${{ secrets.SFTP_HOST }};
+            mirror --reverse --delete \
+              --exclude-glob=.git \
+              --exclude-glob=.github \
+              --exclude-glob=.DS_Store \
+              --exclude-glob='*.bak*' \
+              ./ /;
+          "
+
+      - name: Notify IndexNow (Bing/Yandex instant indexing)
+        run: |
+          curl -s "https://api.indexnow.org/indexnow?url=${{ secrets.SITE_URL }}%2F&key=${{ secrets.INDEXNOW_KEY }}" \
+            -o /dev/null -w "IndexNow status: %{http_code}\n"

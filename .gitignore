@@ -1,0 +1,9 @@
+.DS_Store
+*.bak
+*.bak.*
+.claude/
+.agent
+.agents/
+skills-lock.json
+*.mp4
+*.mov
