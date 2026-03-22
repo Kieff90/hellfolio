@@ -33,8 +33,14 @@ jobs:
             mirror --reverse --delete \
               --exclude-glob=.git \
               --exclude-glob=.github \
+              --exclude-glob=.claude \
+              --exclude-glob=.agent \
+              --exclude-glob=.agents \
               --exclude-glob=.DS_Store \
               --exclude-glob='*.bak*' \
+              --exclude-glob=skills-lock.json \
+              --exclude-glob='*.mp4' \
+              --exclude-glob='*.mov' \
               ./ /;
           "
 
