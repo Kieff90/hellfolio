@@ -59,10 +59,14 @@
     {
       "@type": "ScholarlyArticle",
       "@id": "https://yourdomain.com/#article-1",
+      "headline": "YOUR_PUBLICATION_TITLE",
       "name": "YOUR_PUBLICATION_TITLE",
       "author": {"@id": "https://yourdomain.com/#person"},
       "description": "YOUR_PUBLICATION_ABSTRACT",
       "keywords": ["YOUR_KEYWORD_1", "YOUR_KEYWORD_2"],
+      "datePublished": "YYYY-MM-DD",
+      "dateModified": "YYYY-MM-DD",
+      "image": "https://yourdomain.com/og-image.png",
       "url": "https://yourdomain.com"
     },
     {
@@ -82,6 +86,66 @@
       "dateCreated": "YYYY-MM-DD",
       "dateModified": "YYYY-MM-DD",
       "mainEntity": {"@id": "https://yourdomain.com/#person"}
+    }
+  ]
+}
+</script>
+
+<!-- FAQPage Schema — improves AI engine citations (Perplexity, Google AI, ChatGPT)
+     Replace all YOUR_* placeholders with real content about yourself.
+     Add/remove questions as needed. Minimum 5 recommended. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does YOUR_FULL_NAME do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "YOUR_FULL_NAME is a YOUR_JOB_TITLE with X+ years of experience in YOUR_SPECIALTIES. They work with YOUR_INDUSTRIES and are based in YOUR_LOCATION."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What results has YOUR_NAME achieved?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "YOUR_KEY_ACHIEVEMENT_1. YOUR_KEY_ACHIEVEMENT_2. YOUR_KEY_ACHIEVEMENT_3."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is YOUR_NAME available for remote work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "YOUR_AVAILABILITY_STATEMENT. Based in YOUR_LOCATION, available for YOUR_REMOTE_REGIONS engagements."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What methodologies and tools does YOUR_NAME use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "YOUR_NAME is certified in YOUR_CERTIFICATIONS. They apply YOUR_METHODOLOGIES in their work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What has YOUR_NAME published or contributed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "YOUR_NAME has published YOUR_PUBLICATIONS. Available via YOUR_PROFILE_LINKS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I contact YOUR_NAME?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "YOUR_FULL_NAME can be reached at YOUR_EMAIL. LinkedIn: YOUR_LINKEDIN_URL. Portfolio: YOUR_DOMAIN."
+      }
     }
   ]
 }
@@ -266,6 +330,7 @@
   }
 
   .hero-name span {
+    display: block;
     color: var(--accent);
   }
 
@@ -1582,7 +1647,7 @@
       <!-- LEFT: text content -->
       <div class="hero-content">
         <p class="hero-eyebrow">YOUR_JOB_TITLE · YOUR_SPECIALTY · YOUR_LOCATION</p>
-        <h1 class="hero-name">YOUR_FIRST_NAME<br><span>YOUR_LAST_NAME.</span></h1>
+        <h1 class="hero-name">YOUR_FIRST_NAME <span>YOUR_LAST_NAME.</span></h1>
         <p class="hero-title">YOUR_TAGLINE_HERE</p>
         <!-- YOUR BIO: X years managing/building [YOUR_DOMAIN] across [YOUR_INDUSTRIES]. [YOUR_VALUE_PROP] -->
         <p class="hero-description">
@@ -1591,7 +1656,7 @@
         </p>
         <div class="hero-cta">
           <a href="mailto:your@email.com" class="btn-primary copy-email">Get in touch ↗</a>
-          <a href="https://linkedin.com/in/YOUR_PROFILE" class="btn-secondary">LinkedIn profile</a>
+          <a href="https://linkedin.com/in/YOUR_PROFILE" class="btn-secondary" target="_blank" rel="me noopener noreferrer">LinkedIn profile</a>
         </div>
       </div>
 
@@ -2037,7 +2102,7 @@
       <a href="mailto:your@email.com" class="footer-link copy-email">your@email.com</a>
       <!-- Optional: remove phone line if not needed -->
       <a href="tel:+XXXXXXXXXXXX" class="footer-link">+XX XXX XXX XXXX</a>
-      <a href="https://linkedin.com/in/YOUR_PROFILE" class="footer-link">LinkedIn ↗</a>
+      <a href="https://linkedin.com/in/YOUR_PROFILE" class="footer-link" target="_blank" rel="me noopener noreferrer">LinkedIn ↗</a>
       <a href="https://github.com/YOUR_USERNAME" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
     </div>
   </footer>
