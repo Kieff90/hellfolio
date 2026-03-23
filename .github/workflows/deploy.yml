@@ -23,13 +23,20 @@ jobs:
       # SITE_URL: your full site URL (e.g. https://yourdomain.com)
       - name: Deploy via SFTP (lftp)
         env:
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_USER: ${{ secrets.SFTP_USER }}
           SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
         run: |
+          if [ -z "$SFTP_HOST" ]; then
+            echo "⚠️  SFTP_HOST secret not configured — skipping deployment."
+            echo "    Add SFTP_HOST, SFTP_USER, SFTP_PASSWORD in Settings → Secrets → Actions."
+            exit 0
+          fi
           lftp -c "
             set sftp:auto-confirm yes;
             set net:timeout 30;
             set net:max-retries 3;
-            open sftp://${{ secrets.SFTP_USER }}:$SFTP_PASSWORD@${{ secrets.SFTP_HOST }};
+            open sftp://$SFTP_USER:$SFTP_PASSWORD@$SFTP_HOST;
             mirror --reverse --delete \
               --exclude-glob=.git \
               --exclude-glob=.github \
@@ -45,6 +52,13 @@ jobs:
           "
 
       - name: Notify IndexNow (Bing/Yandex instant indexing)
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
-          curl -s "https://api.indexnow.org/indexnow?url=${{ secrets.SITE_URL }}%2F&key=${{ secrets.INDEXNOW_KEY }}" \
+          if [ -z "$INDEXNOW_KEY" ]; then
+            echo "⚠️  INDEXNOW_KEY secret not configured — skipping IndexNow notification."
+            exit 0
+          fi
+          curl -s "https://api.indexnow.org/indexnow?url=${SITE_URL}%2F&key=${INDEXNOW_KEY}" \
             -o /dev/null -w "IndexNow status: %{http_code}\n"
