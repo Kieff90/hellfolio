@@ -20,8 +20,8 @@ A single-file personal portfolio with an **AI voice assistant** powered by [Deep
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/Kieff90/hr-enemy.git
-cd hr-enemy
+git clone https://github.com/Kieff90/hellfolio.git
+cd hellfolio
 ```
 
 ### 2. Get a Deepgram API key
