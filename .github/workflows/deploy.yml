@@ -60,5 +60,7 @@ jobs:
             echo "⚠️  INDEXNOW_KEY secret not configured — skipping IndexNow notification."
             exit 0
           fi
-          curl -s "https://api.indexnow.org/indexnow?url=${SITE_URL}%2F&key=${INDEXNOW_KEY}" \
+          curl -s -G "https://api.indexnow.org/indexnow" \
+            --data-urlencode "url=${SITE_URL}/" \
+            --data-urlencode "key=${INDEXNOW_KEY}" \
             -o /dev/null -w "IndexNow status: %{http_code}\n"

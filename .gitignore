@@ -7,3 +7,7 @@
 skills-lock.json
 *.mp4
 *.mov
+.env
+.env.*
+!.env.example
+config.local.*

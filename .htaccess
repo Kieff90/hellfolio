@@ -3,7 +3,10 @@ Header set X-Frame-Options "DENY"
 Header set X-Content-Type-Options "nosniff"
 Header set Referrer-Policy "strict-origin-when-cross-origin"
 Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' wss://agent.deepgram.com; media-src 'self' blob:; frame-ancestors 'none';"
+# NOTE: 'unsafe-inline' in script-src is required because all JS is in a single inline <script> block.
+# For production hardening: extract JS to an external file and replace 'unsafe-inline' with a nonce or hash.
+Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' wss://agent.deepgram.com https://www.google-analytics.com https://analytics.google.com; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none';"
+Header set Permissions-Policy "microphone=(self), camera=(), geolocation=()"
 
 # ── Compression ───────────────────────────────────────────────────────────────
 <IfModule mod_deflate.c>

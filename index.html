@@ -161,7 +161,8 @@
   gtag('config', 'G-XXXXXXXXXX');
 </script>
 -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Ctext x='16' y='23' font-family='Arial Black%2CArial%2Csans-serif' font-size='22' font-weight='900' text-anchor='middle' fill='%23e8ff4a'%3EP%3C/text%3E%3C/svg%3E">
+<!-- Favicon: replace YOUR_INITIAL with your first letter (e.g. J for Jane Doe) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Ctext x='16' y='23' font-family='Arial Black%2CArial%2Csans-serif' font-size='22' font-weight='900' text-anchor='middle' fill='%23e8ff4a'%3EYOUR_INITIAL%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -2136,8 +2137,11 @@
     gaId:       '',                           // Google Analytics ID — set '' to disable
 
     // AI Voice Assistant (Deepgram + Claude via Deepgram Think)
-    // Get your key at console.deepgram.com — create a RESTRICTED key (scope: usage:write)
-    // Recommended: set a $20/month budget cap
+    // ⚠️  SECURITY WARNING: This key is visible to anyone who inspects your page source.
+    //     You MUST use a RESTRICTED key (scope: usage:write only) with a monthly budget cap.
+    //     A full-access key here = anyone can use your Deepgram account and rack up charges.
+    //     Create a restricted key at: https://console.deepgram.com → API Keys → New Key → Restricted
+    //     Recommended budget cap: $20/month
     deepgramKey: 'YOUR_DEEPGRAM_API_KEY',
     voiceGreeting: "Hi! I'm YOUR_NAME's AI assistant. How can I help you today?",
 
